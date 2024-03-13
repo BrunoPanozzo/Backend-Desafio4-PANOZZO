@@ -1,19 +1,24 @@
 const { Router } = require('express')
+const ProductManager = require('../ProductManager')
 
 const router = Router()
+const fileName = `${__dirname}/../../products.json`
+const productManager = new ProductManager(fileName)
 
 //endpoints
-router.get('/', (req, res) => {
-    const data = {
-        nombre: req.query.nombre,
-        apellido: req.query.apellido,
-        title: 'Mi pagina', // este placeholder está en layouts/main
-        scripts: ['product.js'],
-        styles: ['product.css'],
-        useWS: true
+
+router.get('/home', async (req, res) => {
+
+    let allProducts = await productManager.getProducts()
+
+    const data = {        
+        title: 'Home', // este placeholder está en layouts/main
+        // scripts: ['product.js'],
+        styles: ['home.css'],
+        allProducts
     }
     
-    res.render('index', data)
+    res.render('home', data)
 })
 //
 

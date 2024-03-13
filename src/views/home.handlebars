@@ -1,0 +1,21 @@
+<div class="item-list-container">
+    <h1 class="titulo-importante">Productos</h1>
+    <div class="item-list">
+        {{#each allProducts}}
+        <div class="card text-bg-light mb-3 item">
+            <div class="card-header">{{category}}</div>
+            <div class="card-body">
+                <h5 class="card-title">{{title}}</h5>
+                <img src={{thumbnail}} alt={{title}} width="270" /> 
+                {{!--<Link to={{"/item/" + producto.id}}>
+                <img src={{this.thumbnail[0]}} alt={{this.title}} width="270" /> 
+                </Link>--}}
+            </div>
+            {{!-- <p class="card-text item-precio">$ {{this.price.toLocaleString()}}</p> --}}
+            {{!--
+            <Link to={{`/item/${this.id}`}} class="btn btn-secondary text-decoration text-center btn-ver-detalle">
+            Ver detalle</Link> --}}
+        </div>
+        {{/each}}
+    </div>
+</div>
