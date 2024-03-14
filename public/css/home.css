@@ -2,6 +2,9 @@
     font-weight: bold;
     font-size: 45px;
     font-family: "Black Han Sans", sans-serif;
+    text-align: center;
+    padding: 40px;
+    color: blue;
 }
 
 .item-list { 
@@ -23,13 +26,25 @@
     min-height: 28rem;
 }
 
+.item:hover {
+    border: 1px solid #a79393;
+    border-radius: 10px;
+}
+
 .item-precio {
     padding-bottom: 5px;
     font-size: 20px;
     font-weight: bold;
 }
 
-.item:hover {
-    border: 1px solid #a79393;
-    border-radius: 10px;
+.item-stock {
+    padding-bottom: 5px;
+    font-size: 20px;
 }
+
+.item-descripcion {
+    padding-top: 80px;
+    font-size: 15px;
+    align-content: flex-start;
+}
+
