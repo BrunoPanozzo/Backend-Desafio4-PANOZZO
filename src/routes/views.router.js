@@ -36,13 +36,13 @@ router.get('/realTimeProducts', async (req, res) => {
 
 router.get('/createProduct', async (req, res) => {
 
-    let allProducts = await productManager.getProducts()
+    //let allProducts = await productManager.getProducts()
 
     const data = {        
         title: 'Create Product', 
         // scripts: ['realTimeProducts.js'],
         // styles: ['home.css', 'realTimeProducts.css'],
-        allProducts
+        //allProducts
     }
     
     res.render('createProduct', data)
