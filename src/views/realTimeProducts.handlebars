@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-info text-decoration
                     text-center btn-agregarItem">Agregar producto
     </button></div>
-    <div class="item-list">
+    <div class="item-list" id="productsList">
         {{#each allProducts}}
         <div class="card text-bg-light mb-3 item">
             <div class="card-header">{{category}}</div>
@@ -17,7 +17,7 @@
             </div>
             <div class"col align-self-center">
                 <button type="button" class="btn btn-danger text-decoration
-                    text-center btn-eliminarItem">Eliminar producto
+                    text-center btn-eliminarItem" id={{this.id}}>Eliminar producto
                 </button>
             </div>
         </div>

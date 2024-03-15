@@ -4,7 +4,7 @@
     "express-handlebars": "^7.1.2",
     "socket.io": "^4.7.4"
   },
-  "name": "backend-desafio3-panozzo",
+  "name": "backend-desafio4-panozzo",
   "version": "1.0.0",
   "main": "./src/app.js",
   "scripts": {
