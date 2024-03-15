@@ -11,6 +11,12 @@ const productManager = new ProductManager(fileName)
 async function validateNewProduct(req, res, next) {
     const product = req.body
 
+    product.thumbnail = [product.thumbnail]
+    product.status = JSON.parse(product.status)
+    
+    product.price = +product.price
+    product.stock = +product.stock
+
     if (productManager.validateProduct(product.title,
                                        product.description,
                                        product.price,
@@ -174,4 +180,4 @@ const main = async () => {
 
 main()
 
-module.exports = router
+module.exports = { router, productManager, validateNewProduct }

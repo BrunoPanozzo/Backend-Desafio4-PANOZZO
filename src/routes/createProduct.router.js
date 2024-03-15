@@ -5,6 +5,8 @@ const router = Router()
 const fileName = `${__dirname}/../../products.json`
 const productManager = new ProductManager(fileName)
 
+const { validateNewProduct }  = require('./product.router')
+
 //endpoints
 
 router.get('/', async (req, res) => {
@@ -18,11 +20,12 @@ router.get('/', async (req, res) => {
     res.render('createProduct', data)
 })
 
-router.post('/', async (req, res) => {
+router.post('/', validateNewProduct, async (req, res) => {
     const newProduct = req.body
 
-    newProduct.thumbnail = ["/images/productos/" + newProduct.thumbnail]
-
+    newProduct.thumbnail = [newProduct.thumbnail]
+    newProduct.status = JSON.parse(newProduct.status)
+    
     //agregar el producto al productManager
     await productManager.addProduct(newProduct.title,
                                     newProduct.description,
@@ -35,9 +38,7 @@ router.post('/', async (req, res) => {
 
     //notificar a los demás browsers mediante WS
     req.app.get('wsServer').emit('newProduct', newProduct)
-
-     let allProducts = await productManager.getProducts()
-console.log(allProducts)
+     
     // // const data = {        
     // //     title: 'Real Time Products', 
     // //     scripts: ['realTimeProducts.js'],
@@ -46,7 +47,7 @@ console.log(allProducts)
     // //     allProducts
     // // }
     
-    res.redirect('/home')
+    res.redirect('/realTimeProducts')
 })
 
 //init methods

@@ -25,6 +25,8 @@ router.get('/', async (req, res) => {
 // router.post('/', async (req, res) => {
 //     const newProduct = req.body
 
+//     newProduct.thumbnail = ["/images/productos/" + newProduct.thumbnail]
+
 //     console.log(newProduct)
 //     //agregar el producto al productManager
 //     await productManager.addProduct(newProduct.title,

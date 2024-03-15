@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     allDeleteButtons.forEach(btn => {
         btn.addEventListener("click", function () {
             // Handle the button click event here
-            // alert(`${btn.id} clicked`);    
+            //alert(`${btn.id} clicked`);  
             socket.emit('deleteProduct', `${btn.id}`)
         });
     });
@@ -29,7 +29,7 @@ socket.on('newProduct', (product) => {
             <div class="card-header">${product.category}</div>
             <div class="card-body">
                 <h5 class="card-title">${product.title}</h5>
-                <img src=${product.thumbnail} alt=${product.title} width="270" />
+                <img src="/images/productos/${product.thumbnail}" alt=${product.title} width="270" />
                 <p class="card-text item-precio">$ ${product.price}</p>
                 <p class="card-text item-stock">Stock Disponible: ${product.stock}</p>
                 <p class="card-text item-descripcion">${product.description}</p>
@@ -45,22 +45,7 @@ socket.on('newProduct', (product) => {
 
 socket.on('deleteProduct', (idProd) => {
     //eliminar el producto al html
-    const container = document.getElementById('productsList')
-    container.innerHTML += `
-    <div class="card text-bg-light mb-3 item">
-            <div class="card-header">${product.category}</div>
-            <div class="card-body">
-                <h5 class="card-title">${product.title}</h5>
-                <img src=${product.thumbnail} alt=${product.title} width="270" />
-                <p class="card-text item-precio">$ ${product.price}</p>
-                <p class="card-text item-stock">Stock Disponible: ${product.stock}</p>
-                <p class="card-text item-descripcion">${product.description}</p>
-            </div>
-            <div class"col align-self-center">
-                <button type="button" class="btn btn-danger text-decoration
-                    text-center btn-eliminarItem" id=${product.id}>Eliminar producto
-                </button>
-            </div>
-        </div>
-     `
+    const container = document.getElementById(idProd)
+    if (container) 
+        container.remove()
 })

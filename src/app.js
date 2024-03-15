@@ -2,7 +2,7 @@ const express = require('express')
 const handlebars = require('express-handlebars')
 const { Server } = require('socket.io')
 
-const productRouter = require('./routes/product.router')
+const { router: productRouter, productManager } = require('./routes/product.router')
 const cartRouter = require('./routes/cart.router')
 // const viewsRouter = require('./routes/views.router')
 const homeRouter = require('./routes/home.router')
@@ -39,8 +39,8 @@ app.set('wsServer', wsServer)
 
 //conexion de un nuevo cliente a mi servidor WS
 wsServer.on('connection', (clientSocket) => {
-    console.log(`Cliente conectado con ID: ${clientSocket.id}`)   
-    
+    console.log(`Cliente conectado con ID: ${clientSocket.id}`)
+
     clientSocket.on('saludo', (data) => {
         console.log(data)
     })
@@ -63,13 +63,14 @@ wsServer.on('connection', (clientSocket) => {
     //     })
     // })
 
-    // clientSocket.on('deleteProduct', (idProd) => {
-    //     console.log('producto a eliminar', idProd)
-    //     productManager.deleteProduct(idProd)
-    //     .then(() => {
-    //         console.log(`El producto con código '${idProd}' se eliminó exitosamente.`)
-    //         //avisar a todos los clientes
-    //         wsServer.emit('deleteProduct', idProd)
-    //     })
-    // })
+    clientSocket.on('deleteProduct', async (idProd) => {
+
+        const id = parseInt(idProd)
+        await productManager.deleteProduct(id)
+
+        console.log(`El producto con código '${id}' se eliminó exitosamente.`)
+        //avisar a todos los clientes
+        wsServer.emit('deleteProduct', idProd)
+
+    })
 })

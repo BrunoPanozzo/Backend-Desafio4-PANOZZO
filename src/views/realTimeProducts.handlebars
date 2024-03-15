@@ -6,18 +6,18 @@
     </button></div>
     <div class="item-list" id="productsList">
         {{#each allProducts}}
-        <div class="card text-bg-light mb-3 item">
+        <div class="card text-bg-light mb-3 item" id='{{this.id}}'>
             <div class="card-header">{{category}}</div>
             <div class="card-body">
                 <h5 class="card-title">{{title}}</h5>
-                <img src={{thumbnail}} alt={{title}} width="270" />
+                <img src="/images/productos/{{thumbnail}}" alt={{title}} width="270" />
                 <p class="card-text item-precio">$ {{this.price}}</p>
                 <p class="card-text item-stock">Stock Disponible: {{this.stock}}</p>
                 <p class="card-text item-descripcion">{{this.description}}</p>
             </div>
             <div class"col align-self-center">
                 <button type="button" class="btn btn-danger text-decoration
-                    text-center btn-eliminarItem" id={{this.id}}>Eliminar producto
+                    text-center btn-eliminarItem" id='{{this.id}}'>Eliminar producto
                 </button>
             </div>
         </div>
